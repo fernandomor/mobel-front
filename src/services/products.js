@@ -25,11 +25,17 @@ CREATE_KIT: async(data)=>{
 SHOW_KIT: async()=>{
     return await service.get(`/kit/show`)
 },
+DETAIL_KIT: async(data)=>{
+    return await service.get(`/kit/edit/${data}`)
+},
 DELETE_KIT: async(data)=>{
     return await service.get(`/kit/delete/${data}`)
 },
 SHOW_CATEGORY: async(category)=>{
     return await service.get(`/${category}`)
+},
+SHOW_LIMIT_PRODUCTS: async()=>{
+    return await service.get(`/list/products`)
 },
 
  
