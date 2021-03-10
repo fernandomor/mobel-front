@@ -22,7 +22,7 @@ export default function CategorySection() {
         {
             cat.map((e,id)=>{
                 return(
-        <Link to={`/${e}`}>
+        <Link to={`/categoria/${e}`}>
         <li key={id}>
             <div className="mb-3">
                 <div className="aspect-w-3 aspect-h-2">

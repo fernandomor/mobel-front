@@ -1,34 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
 import PRODUCT_SERVICE from '../../services/products'
-import TextTruncate from 'react-text-truncate'
 import { Link } from 'react-router-dom'
 import CartContext from '../../context/cart/CartContext'
 
-export default function Category() {
-    //importar de la DB
-    const {categoria} = useParams()
-    const [productsByCat, setProductsByCat] = useState()
-  
-   const context = useContext(CartContext)
-   const{ addProducts }=context
+export default function AllProducts() {
+    const context = useContext(CartContext)
+    const{ addProducts }=context
+    const [prod, setProd] = useState()
+   
    
     useEffect(() => {
-        const submitForm = async () =>{
-            const prodDB = await PRODUCT_SERVICE.SHOW_CATEGORY(categoria)
-            setProductsByCat(prodDB.data)
-            console.log(prodDB.data)
+        const getProd = async () =>{
+            const prodDB = await PRODUCT_SERVICE.SHOW()
+            setProd(prodDB.data)
         }
-          submitForm()
-    }, [categoria])
+          getProd()
+    }, [])
 
 
-    
 
 
-    return (
-        <>
-        {   productsByCat === undefined?(
+return (
+<>
+{   prod === undefined?(
             <p>Cargando..</p>
         ):
         (
@@ -36,13 +30,12 @@ export default function Category() {
   <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
     <div class="space-y-12">
       <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
-        <h2 class="text-3xl font-extrabold text-left tracking-tight sm:text-4xl">{categoria}</h2>
       </div>
       <ul class="grid grid-cols-2 gap-x-8 md:grid-cols-4">
 
 
      { 
-     productsByCat.map((e,id)=>{
+     prod.map((e,id)=>{
                 return (
                   <>
                   
@@ -67,12 +60,6 @@ export default function Category() {
               <div class="text-left ">
                 <h2 className="text-red-400 font-medium">{e.price} mxn</h2>
                 <h3 className="font-medium text-lg">{e.productName}</h3>
-                <TextTruncate class="text-gray-600 text-sm text-left "
-                line={2}
-                element="span"
-                truncateText="…"
-                text={e.productDescription}
-                />
               </div>
             </div>
           </Link>
@@ -92,10 +79,6 @@ export default function Category() {
         )
                                                   
         }
-
-        </>
+</>
     )
 }
-
-
-
