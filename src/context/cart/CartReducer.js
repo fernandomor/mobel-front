@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_PRODUCT } from "../types";
+import { ADD_PRODUCT,ADD_KIT } from "../types";
 
 export default (state, action) => {
 
@@ -9,7 +9,14 @@ export default (state, action) => {
             return {
                 ...state,
                 products:[payload,...state.products]
-            }            
+            }   
+        case ADD_KIT:
+            return{
+                ...state,
+                products:[...payload.map(e=>{
+                    return e
+                }),...state.products]
+            }         
        default:
             return state
     }

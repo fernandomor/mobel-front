@@ -18,7 +18,10 @@ import Cartshop from './components/user/Cartshop';
 import AllProducts from './components/user/AllProducts';
 import Login from './components/user/Login';
 import SignUp from './components/user/SignUp';
-
+import Profile from './components/user/Profile';
+import AuthState from './context/auth/AuthState'
+import AlertaState from './context/alertas/AlertaState'
+import CheckOut from './components/user/CheckOut';
 
 
   
@@ -28,7 +31,9 @@ import SignUp from './components/user/SignUp';
 
 function App() {
   return (
-   
+   <AuthState>
+     <AlertaState>
+
       <CartState>
         
         <Router>
@@ -48,10 +53,14 @@ function App() {
           <Route exact path="/all" component={AllProducts}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signup" component={SignUp}/>
+          <Route exact path="/perfil" component={Profile}/>
+          <Route exact path="/checkout" component={CheckOut}/>
         </Switch>
       </Router>
      
       </CartState>
+     </AlertaState>
+   </AuthState>
     
     
   );

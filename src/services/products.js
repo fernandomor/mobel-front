@@ -37,6 +37,9 @@ SHOW_CATEGORY: async(category)=>{
 SHOW_LIMIT_PRODUCTS: async()=>{
     return await service.get(`/list/products`)
 },
+SIC_MUNDUS_CREATUS_EST: async(data)=>{
+    return await service.post(`/create/order`,data)
+},
 
  
 }

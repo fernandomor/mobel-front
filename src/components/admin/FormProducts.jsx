@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import PRODUCT_SERVICE from '../../services/products'
 
 export default function FormProducts() {
@@ -216,8 +216,16 @@ className=" mt-5 w-full text-center py-3 border border-transparent text-base fon
 }
 
 
+<Link to={"/admin/dashboard"}>
+<button 
+className=" mt-5 w-full text-center py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-black hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600">
+  ir al Dashboard
+</button>
+</Link>
 </form>
 </div>
+
+
 </>
     )
 }

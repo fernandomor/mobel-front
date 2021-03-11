@@ -1,14 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
 import CartContext from '../../context/cart/CartContext'
 import { Link } from 'react-router-dom'
+import AuthContext from '../../context/auth/AuthContext'
+import PRODUCT_SERVICE from '../../services/products'
+
 
 export default function Cartshop() {
 
+    
+    const authContext = useContext(AuthContext)
+    const {usuario , usuarioAutenticado} = authContext
 
+    useEffect(() => {
+        usuarioAutenticado()
+    }, [])
 
     const context = useContext(CartContext)
     const { products } = context
     const [suma, setSuma] = useState(0)
+    const [order, setOrder] = useState({
+        products:"",
+        ordNum:"",
+        usuario:"",
+        suma:""
+    })
 
     useEffect(() => {
         if (products.length > 0) {
@@ -22,8 +37,35 @@ export default function Cartshop() {
 
     }, [])
 
+    const [ordNum, setOrdNum] = useState()
 
+    //Aqui se genera el numero de orden 
+    useEffect(() => {
+        const orderNum =()=>{
+            let r = Math.random().toString(36).substring(7);
+            setOrdNum(r)
+        }
+        orderNum()
+    }, [suma])
 
+    const submitCart = async e =>{
+        
+
+        setOrder({
+            products,
+            ordNum,
+            usuario,
+            suma
+        })
+
+        const data = {products,
+            ordNum,
+            usuario,
+            suma}
+
+        await PRODUCT_SERVICE.SIC_MUNDUS_CREATUS_EST(data)
+    
+    }
 
     return (
         <>
@@ -70,6 +112,7 @@ export default function Cartshop() {
                         }
                     </div>
                 </div>
+
                 {/* resumen de compra */}
 
                 <div className="md:w-1/2  p-4">
@@ -126,8 +169,7 @@ export default function Cartshop() {
 
                         </div>
                     </div>
-                </div>
-                <div className="flex justify-end">
+                    <div className="flex justify-end mt-4">
                 
                 {
                     suma===0?(
@@ -142,21 +184,42 @@ export default function Cartshop() {
                         </button>
                         </Link>
                     ):(
-                        <Link to={"/login"}>
+                        
+                            usuario?(
+                        <Link to={"/perfil"}>
+                        <button 
+                        onClick={submitCart}
+                        type="submit" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Pagar ahora
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                     className="h-6 w-6 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                </button>            
+            </Link>
+                            ):(
+                                <Link to={"/login"}>
                         <button type="button" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                    Pagar
+                    Hacer login
                     <svg xmlns="http://www.w3.org/2000/svg" 
                      className="h-6 w-6 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                 </button>
                         </Link>
-                    )
+                            )
+
+                        
+                        
+                        
+                        )
                 }
                 
 
 
                 </div>
+                </div>
+                
 
             </div>
         </>

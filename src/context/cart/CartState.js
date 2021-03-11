@@ -10,6 +10,7 @@ import PRODUCT_SERVICE from '../../services/products'
 export default function CartState(props) {
     const initialState ={
         products:[],
+        kits:[],
         selectedProd: null
     }
 
@@ -23,13 +24,22 @@ export default function CartState(props) {
         })
     }
 
+    const addKit = async (array)=>{
+        dispatch({
+            type: "ADD_KIT",
+            payload: array.kitProducts
+        })
+    }
+
     
     return (
         <>
             <CartContext.Provider value={{
                 products: state.products,
                 selectedProd: state.selectedProd,
-                addProducts
+                kits:state.kits,
+                addProducts,
+                addKit
             }}>
                 {props.children}
             </CartContext.Provider>

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext , useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import CartContext from '../context/cart/CartContext';
+import AuthContext from '../context/auth/AuthContext'
 //aqui accedo al contexto y voy a actualizar la cantidad de elementos que haya en el "carrito"
 
 export default function Navbar() {
@@ -8,6 +9,15 @@ export default function Navbar() {
   const context = useContext(CartContext)
   const {products} = context
   
+  const authContext = useContext(AuthContext)
+    const {usuario, usuarioAutenticado, cerrarSesion} = authContext
+
+    useEffect(() => {
+      usuarioAutenticado()
+  }, [])
+
+
+  console.log(products)
 
     return (
         <>
@@ -42,10 +52,29 @@ export default function Navbar() {
 
         <div className="ml-3 relative">
           <div>
-            <button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-              <span className="sr-only">Open user menu</span>
-              <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=J4TTyWeNKF&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-            </button>
+            {
+              usuario?(
+
+                <button 
+                className="btn btn-blank cerrar-sesion"
+                onClick={() => {
+                    cerrarSesion()
+                }}
+                class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+          Cerrar sesión
+  </button>
+                
+              ):(
+                <Link to={"/login"}>
+                  <button 
+                className="btn btn-blank cerrar-sesion"
+                class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+          Iniciar sesión
+  </button>
+                </Link>
+              )
+            }
+          
           </div>
          
         </div>
@@ -54,35 +83,6 @@ export default function Navbar() {
   </div>
 
 </nav>
-
-<div>
-  <dl className="mt-5 grid grid-cols-3 gap-5 ">
-    <div className="bg-white overflow-hidden shadow rounded-lg">
-      <div className="px-4 py-5">
-        <dd className="mt-1 text-3xl font-semibold text-gray-900">
-          <Link to={`/admin/dashboard`}><p>admin</p></Link>
-        </dd>
-      </div>
-    </div>
-
-    <div className="bg-white overflow-hidden shadow rounded-lg">
-      <div className="px-4 py-5 ">
-        <dd className="mt-1 text-3xl font-semibold text-gray-900">
-        <Link to={`/`}><p>home</p></Link>
-        </dd>
-      </div>
-    </div>
-
-    <div className="bg-white overflow-hidden shadow rounded-lg">
-      <div className="px-4 py-5">
-        <dd className="mt-1 text-3xl font-semibold text-gray-900">
-          24.57%
-        </dd>
-      </div>
-    </div>
-  </dl>
-</div>
-
 
 
         </>
