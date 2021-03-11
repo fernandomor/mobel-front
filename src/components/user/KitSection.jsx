@@ -24,7 +24,7 @@ export default function KitSection() {
     <div className="space-y-12">
       <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
         <h2 className="text-3xl text-left font-extrabold tracking-tight sm:text-4xl">Kits para todos</h2>
-        <p className="text-xl text-left text-gray-500">Odio nisi, lectus dis nulla. Ultrices maecenas vitae rutrum dolor ultricies donec risus sodales. Tempus quis et.</p>
+        <p className="text-xl text-left text-gray-500">Cada quien tiene su estilo, elige un kit ya hecho que incluye todo lo necesario como ; silla, escritorio, repisas y archiveros ó arma el tuyo.</p>
       </div>
       <ul className="grid grid-cols-1 gap-x-8 md:grid-cols-2">
         {

@@ -26,7 +26,7 @@ const [prodLimit, setProdLimit] = useState()
     <div className="space-y-12">
       <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
         <h2 className="text-3xl text-left font-extrabold tracking-tight sm:text-4xl">Podrian interesarte</h2>
-        <p className="text-xl text-left text-gray-500">Odio nisi, lectus dis nulla. Ultrices maecenas vitae rutrum dolor ultricies donec risus sodales. Tempus quis et.</p>
+        <p className="text-xl text-left text-gray-500">Lo del momento </p>
       </div>
       <ul className="grid grid-cols-2 gap-x-8 md:grid-cols-4">
         {

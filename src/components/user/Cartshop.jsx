@@ -5,7 +5,7 @@ import AuthContext from '../../context/auth/AuthContext'
 import PRODUCT_SERVICE from '../../services/products'
 
 
-export default function Cartshop() {
+export default function Cartshop(props) {
 
     
     const authContext = useContext(AuthContext)
@@ -53,9 +53,8 @@ export default function Cartshop() {
         anfangAuto()
         setSuma(0)
         console.log("En el cart")
-        await PRODUCT_SERVICE.SIC_MUNDUS_CREATUS_EST(data)
-        
-    
+        props.history.push("/perfil")
+        await PRODUCT_SERVICE.SIC_MUNDUS_CREATUS_EST(data)   
     }
 
     return (

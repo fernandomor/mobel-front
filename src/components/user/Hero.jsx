@@ -17,14 +17,20 @@ export default function Hero() {
           Tener un espacio de trabajo a tu estilo y funcional es la nueva realidad. Descúbre tu home office ideal, contestando una pequeña encuesta.
         </p>
         <div className="mt-10 sm:flex sm:justify-center lg:justify-start">
-          <div className="rounded-md shadow">
+        <div class="rounded-md shadow">
             <Link to={"/quizz"}>
             <p className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 md:py-4 md:text-lg md:px-10">
-              Haz el quiz
+              Descúbre el tuyo
             </p>
             </Link>
           </div>
-          
+          <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+          <Link to={"/all"}>
+            <p className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+              Ver productos
+            </p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

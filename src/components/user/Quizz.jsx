@@ -28,6 +28,7 @@ export default function Quizz() {
     const [dbInfo, setdbInfo] = useState()
     const context = useContext(CartContext)
     const{ addKit } = context
+    const [mail, setMail] = useState()
 
     function handleChanges(ev) {
         setdataForm({
@@ -36,6 +37,13 @@ export default function Quizz() {
         })
     }
 
+    function inputMail (ev){
+        setMail({
+            ...mail,
+            [ev.target.name]: ev.target.value
+        })
+    }
+    console.log(mail)
     const quizzForm = async (ev) =>{
 
         ev.preventDefault()
@@ -64,8 +72,14 @@ export default function Quizz() {
     }
 
 
+    // send al back para enviar mail
+    const sendMail = async (e) =>{
 
+       
+        const correo = await PRODUCT_SERVICE.SEND_MAIL(mail)
 
+        console.log(correo)
+    }
 
 
 
@@ -75,7 +89,7 @@ export default function Quizz() {
             {
                 done?(
                 <div>
-            <div className="mx-auto py-12 px-4 max-w-xl sm:px-6 lg:px-8 lg:py-24">
+            <div className="mx-auto  px-4 max-w-xl sm:px-6 lg:px-8 ">
             
             {dbInfo === undefined?(<p>Cargando ..</p>):(
                 
@@ -119,8 +133,13 @@ export default function Quizz() {
       <div class="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">
         <form class="sm:flex">
           <label for="emailAddress" class="sr-only">Email address</label>
-          <input id="emailAddress" name="emailAddress" type="email" autocomplete="email" required class="w-full border-white px-5 py-3 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-yellow-700 focus:ring-white rounded-md" placeholder="Ingresa su correo"/>
-          <button type="submit" class="mt-3 w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-yellow-700 focus:ring-white sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">
+          <input id="emailAddress" 
+          name="emailAddress"
+          onChange={(event)=>inputMail(event)}
+          type="email" autocomplete="email" required class="w-full border-white px-5 py-3 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-yellow-700 focus:ring-white rounded-md" placeholder="Ingresa su correo"/>
+          <button type="submit"
+          onClick={(ev)=>sendMail(ev)}
+          class="mt-3 w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-yellow-700 focus:ring-white sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">
             Enviar
           </button>
         </form>

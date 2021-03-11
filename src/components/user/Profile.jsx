@@ -13,8 +13,8 @@ export default function Profile() {
 
     const authContext = useContext(AuthContext)
     const {usuario , usuarioAutenticado} = authContext
-    // const [Ordnung, setOrdnung] = useState()
-    console.log(usuario)
+    const [Ordnung, setOrdnung] = useState()
+    const [cadenero, setCadenero] = useState(false)
     
 
     useEffect(() => {
@@ -22,17 +22,28 @@ export default function Profile() {
     }, [])
 
 
-    
-    // const getUser = async() =>{
-    //     const responseDB = await PRODUCT_SERVICE.DIE_ORDNUNG(usuario.email)
-    //     setOrdnung(responseDB.data)
-    // }
-    
-    
-    
-    // console.log(Ordnung)
+    useEffect(() => {
+        console.log("fueraaaaaaaaaaaaa")
+        if(cadenero){
+            const getUser = async() =>{
+                const responseDB = await PRODUCT_SERVICE.DIE_ORDNUNG(usuario.email)
+                setOrdnung(responseDB.data)
+            }
 
-    return (
+            getUser()
+        }
+        setCadenero(true)
+        
+        console.log("YA ENTRE",Ordnung)
+
+    }, [cadenero])
+
+    
+
+    
+
+    
+        return (
         <>
 
     <div className="container mx-auto my-60">
@@ -61,6 +72,38 @@ export default function Profile() {
                         <h3 className="font-bold text-gray-600 text-left px-4">Pedidos recientes</h3>
                         <div className="mt-5 w-full">
                             {
+                                Ordnung ===  undefined?(
+                                    null
+                                ):(
+                                    Ordnung.map((e,id)=>{
+                                        return(
+                                        <div  className="w-full border-t-2 border-gray-100 text-gray-600 py-4 px-4 block hover:bg-gray-100 transition duration-150">
+                                        <p>
+                                        <span className="font-medium">    
+                                        Número de orden : 
+                                        </span>
+                                        {e.orderNumber} 
+                                        </p>
+                                        <p>
+                                        <span className="font-medium">    
+                                        Precio: 
+                                        </span>
+                                        {e.total} 
+                                        </p>
+
+
+                                        </div>
+                                    )
+                                    })
+                                    
+                                    
+                                )
+                            }
+                            
+                                                       
+                        </div>
+                        <div className="mt-5 w-full">
+                            {
                                 products.length > 0?(
                                     <Link to={"/cart"}>
                                     <div  className="w-full border-t-2 border-gray-100 font-medium text-gray-600 py-4 px-4 block hover:bg-gray-100 transition duration-150">
@@ -80,6 +123,7 @@ export default function Profile() {
                                                        
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
