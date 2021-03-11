@@ -31,6 +31,12 @@ export default function CartState(props) {
         })
     }
 
+    const anfangAuto = async ()=>{
+        dispatch({
+            type: "TOTEN_AUTO"
+        })
+    }
+
     
     return (
         <>
@@ -39,7 +45,8 @@ export default function CartState(props) {
                 selectedProd: state.selectedProd,
                 kits:state.kits,
                 addProducts,
-                addKit
+                addKit,
+                anfangAuto
             }}>
                 {props.children}
             </CartContext.Provider>

@@ -40,6 +40,12 @@ SHOW_LIMIT_PRODUCTS: async()=>{
 SIC_MUNDUS_CREATUS_EST: async(data)=>{
     return await service.post(`/create/order`,data)
 },
+DIE_ORDNUNG: async(mail)=>{
+    return await service.get(`/get/${mail}`)
+},
+EL_KITTY: async(kityname)=>{
+    return await service.get(`/result/${kityname}`)
+}
 
  
 }

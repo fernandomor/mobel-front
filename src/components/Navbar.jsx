@@ -17,9 +17,7 @@ export default function Navbar() {
   }, [])
 
 
-  console.log(products)
-
-    return (
+     return (
         <>
             
 <nav className="bg-white shadow-lg">

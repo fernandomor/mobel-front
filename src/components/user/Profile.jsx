@@ -1,8 +1,9 @@
 
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CartContext from '../../context/cart/CartContext'
 import AuthContext from '../../context/auth/AuthContext'
 import { Link } from 'react-router-dom'
+import PRODUCT_SERVICE from '../../services/products'
 
 export default function Profile() {
 
@@ -12,14 +13,25 @@ export default function Profile() {
 
     const authContext = useContext(AuthContext)
     const {usuario , usuarioAutenticado} = authContext
+    // const [Ordnung, setOrdnung] = useState()
+    console.log(usuario)
+    
 
     useEffect(() => {
         usuarioAutenticado()
     }, [])
 
-    console.log("el user",usuario)
 
-    //Aqui hay que revisar si tiene algo en el carro, si tiene algo lo renviamos al chekout, si esta vacio lo mandamos a la pagina de todos los productos
+    
+    // const getUser = async() =>{
+    //     const responseDB = await PRODUCT_SERVICE.DIE_ORDNUNG(usuario.email)
+    //     setOrdnung(responseDB.data)
+    // }
+    
+    
+    
+    // console.log(Ordnung)
+
     return (
         <>
 

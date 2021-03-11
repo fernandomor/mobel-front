@@ -1,5 +1,6 @@
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const ADD_KIT = "ADD_KIT"
+export const TOTEN_AUTO = "TOTEN_AUTO"
 
 export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO';
 export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS';

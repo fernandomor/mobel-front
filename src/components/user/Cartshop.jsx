@@ -16,14 +16,9 @@ export default function Cartshop() {
     }, [])
 
     const context = useContext(CartContext)
-    const { products } = context
+    const { products,anfangAuto } = context
     const [suma, setSuma] = useState(0)
-    const [order, setOrder] = useState({
-        products:"",
-        ordNum:"",
-        usuario:"",
-        suma:""
-    })
+   
 
     useEffect(() => {
         if (products.length > 0) {
@@ -48,22 +43,18 @@ export default function Cartshop() {
         orderNum()
     }, [suma])
 
-    const submitCart = async e =>{
-        
-
-        setOrder({
-            products,
-            ordNum,
-            usuario,
-            suma
-        })
-
+    const submitCart = async (e) =>{
+        e.preventDefault()
         const data = {products,
             ordNum,
             usuario,
             suma}
-
+        
+        anfangAuto()
+        setSuma(0)
+        console.log("En el cart")
         await PRODUCT_SERVICE.SIC_MUNDUS_CREATUS_EST(data)
+        
     
     }
 
@@ -186,17 +177,17 @@ export default function Cartshop() {
                     ):(
                         
                             usuario?(
-                        <Link to={"/perfil"}>
+                        
                         <button 
-                        onClick={submitCart}
-                        type="submit" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        onClick={(ev)=>submitCart(ev)}
+                        type="button" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                     Pagar ahora
                     <svg xmlns="http://www.w3.org/2000/svg" 
                      className="h-6 w-6 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                 </button>            
-            </Link>
+            
                             ):(
                                 <Link to={"/login"}>
                         <button type="button" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">

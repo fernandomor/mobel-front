@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_PRODUCT,ADD_KIT } from "../types";
+import { ADD_PRODUCT,ADD_KIT,TOTEN_AUTO } from "../types";
 
 export default (state, action) => {
 
@@ -16,7 +16,14 @@ export default (state, action) => {
                 products:[...payload.map(e=>{
                     return e
                 }),...state.products]
-            }         
+            } 
+            case TOTEN_AUTO:
+            console.log("Entra a la funcion")
+            return{
+                products:[],
+                kits:[],
+                selectedProd: null
+            }        
        default:
             return state
     }

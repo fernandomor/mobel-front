@@ -22,6 +22,7 @@ import Profile from './components/user/Profile';
 import AuthState from './context/auth/AuthState'
 import AlertaState from './context/alertas/AlertaState'
 import CheckOut from './components/user/CheckOut';
+import Quizz from './components/user/Quizz';
 
 
   
@@ -55,6 +56,8 @@ function App() {
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/perfil" component={Profile}/>
           <Route exact path="/checkout" component={CheckOut}/>
+          <Route exact path="/quizz" component={Quizz}/>
+          
         </Switch>
       </Router>
      
