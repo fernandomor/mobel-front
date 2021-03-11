@@ -54,11 +54,14 @@ export default function Quizz() {
 
         const respDB = await PRODUCT_SERVICE.EL_KITTY(mode(newArr))
         setdbInfo(respDB)
-
     }
 
 
-    console.log("la infor",dbInfo)
+    const queSend = async ()=>{
+        const populated = await PRODUCT_SERVICE.DETAIL_KIT(dbInfo.data[0]._id)
+        console.log("esteee",populated.data)
+        addKit(populated.data)
+    }
 
 
 
@@ -78,14 +81,14 @@ export default function Quizz() {
                 
                 
                 <div class="space-y-4">
-                    {/* <button
-                onClick={()=>addKit(dbInfo.data[0].kitProducts)}
+                    <button
+                onClick={()=>queSend(dbInfo.data[0])}
                 type="button" 
-                class=" items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-yellow-300 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 relative top-5 left-40 lg:left-8">
+                class="  p-5 border border-transparent rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 relative top-10  z-10">
                             <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
-                </button> */}
+                </button>
                 <div class="aspect-w-3 aspect-h-2">
                   <img class="object-cover shadow-lg rounded-lg" src={dbInfo.data[0].kitImage} alt=""/>
                 </div>
@@ -133,10 +136,12 @@ export default function Quizz() {
             ):
             
             (
-                <div class="mt-10 sm:mt-0">
+                <div class="mt-10 sm:mt-0 flex justify-center">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <h1>Elige la respuesta que más se asemeje a ti </h1>
+                    <h2 class="text-3xl my-3 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    <span class="block">Listo?</span>
+                                        </h2>
                         <form >
                                     
 

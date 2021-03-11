@@ -20,7 +20,7 @@ useEffect(() => {
     
 }, [id])
 
-console.log(products)
+console.log("Kits",dbDetail)
 
     return (
         <div>
