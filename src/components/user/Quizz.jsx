@@ -74,10 +74,7 @@ export default function Quizz() {
 
     // send al back para enviar mail
     const sendMail = async (e) =>{
-
-       
         const correo = await PRODUCT_SERVICE.SEND_MAIL(mail)
-
         console.log(correo)
     }
 

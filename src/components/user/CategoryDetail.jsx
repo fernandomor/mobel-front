@@ -53,7 +53,7 @@ export default function Category() {
           <button
           onClick={()=>addProducts(e._id)}
           type="button" 
-          class=" items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-yellow-300 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 relative top-5 left-40 lg:left-8">
+          class=" items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-yellow-300 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 relative top-5 left-0 lg:left-8">
                       <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                       </svg>
