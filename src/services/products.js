@@ -48,6 +48,9 @@ EL_KITTY: async(kityname)=>{
 },
 SEND_MAIL: async(emailAddress)=>{
     return await service.post(`/user/sendmail`,emailAddress)
+},
+PROD_CREATUS: async(data)=>{
+    return await service.post(`/product/create`,data)
 }
 
 

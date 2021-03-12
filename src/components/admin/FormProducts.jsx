@@ -58,7 +58,7 @@ useEffect(() => {
 
 
 const submitForm = async ()=>{
-    const posty = await axios.post("https://mobels.herokuapp.com/product/create" , dataForm)
+    const posty = await PRODUCT_SERVICE.PROD_CREATUS(dataForm)
     setDataForm({
         productName : "",
         inventory: "",
