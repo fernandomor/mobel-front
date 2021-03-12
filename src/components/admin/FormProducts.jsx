@@ -24,30 +24,31 @@ useEffect(() => {
   
   if(id !== undefined){
     setEdit(true)
+    const editarProdDB = async () =>{
+      const responseDB = await PRODUCT_SERVICE.DETAIL_PRODUCT(id)
+      const {productName,
+        inventory,
+        productImage,
+        deliveryTime,
+        productDescription,
+        category,
+        price,
+        
+      } = responseDB.data
+      setDataForm({
+        productName,
+        inventory,
+        productImage,
+        deliveryTime,
+        productDescription,
+        category,
+        price,
+      })
+      console.log(responseDB.data)
+    } 
+    editarProdDB()
   }
-   const editarProdDB = async () =>{
-    const responseDB = await PRODUCT_SERVICE.DETAIL_PRODUCT(id)
-    const {productName,
-      inventory,
-      productImage,
-      deliveryTime,
-      productDescription,
-      category,
-      price,
-      
-    } = responseDB.data
-    setDataForm({
-      productName,
-      inventory,
-      productImage,
-      deliveryTime,
-      productDescription,
-      category,
-      price,
-    })
-    console.log(responseDB.data)
-  } 
-  editarProdDB()
+  console.log(id)
 }, [])
 
 
