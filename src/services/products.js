@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const service = axios.create({
- baseURL: 'https://mobel.herokuapp.com/',
+ baseURL: 'https://mobel.herokuapp.com',
  withCredentials: true
 })
 
