@@ -1,6 +1,5 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import PRODUCT_SERVICE from '../../services/products'
 
 export default function FormProducts() {
@@ -8,7 +7,6 @@ export default function FormProducts() {
 const cat = ["Sillas","Archiveros","Escritorios","Repisas"]
 
 const {id} = useParams()
-const history = useHistory()
 const [dataForm, setDataForm] = useState({
   productName : "",
   inventory: "",
@@ -81,14 +79,11 @@ const handleChanges = (event,element) => {
         [event.target.name]: event.target.value
     })
 
-    console.log(dataForm)
-
-}
+  }
 
 
 const editProduct = async ()=>{
   await PRODUCT_SERVICE.EDIT_PRODUCT(dataForm,id)
-  history.push("/admin/dashboard")
 }
 
 
