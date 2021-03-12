@@ -32,7 +32,7 @@ const AuthState = props => {
     const registrarUsuario = async datos => {
         try{
             
-            const respuesta = await clienteAxios.post('https://mobel.herokuapp.com/api/usuarios', datos)
+            const respuesta = await clienteAxios.post('https://mobels.herokuapp.com/api/usuarios', datos)
             
             dispatch({
                 type: REGISTRO_EXITOSO,
