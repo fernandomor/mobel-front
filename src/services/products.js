@@ -47,7 +47,7 @@ EL_KITTY: async(kityname)=>{
     return await service.get(`/result/${kityname}`)
 },
 SEND_MAIL: async(emailAddress)=>{
-    return await service.post(`/sendmail`,emailAddress)
+    return await service.post(`/user/sendmail`,emailAddress)
 }
 
 
