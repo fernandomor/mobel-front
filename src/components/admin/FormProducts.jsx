@@ -47,6 +47,7 @@ useEffect(() => {
       console.log(responseDB.data)
     } 
     editarProdDB()
+    console.log("aqui shilling en el if")
   }
   console.log(id)
 }, [])
@@ -57,7 +58,7 @@ useEffect(() => {
 
 
 const submitForm = async ()=>{
-    await axios.post("https://mobels.herokuapp.com/product/create" , dataForm)
+    const posty = await axios.post("https://mobels.herokuapp.com/product/create" , dataForm)
     setDataForm({
         productName : "",
         inventory: "",
@@ -67,6 +68,7 @@ const submitForm = async ()=>{
         category: "",
         price: ""
        })
+       console.log(posty)
   }
 
 
