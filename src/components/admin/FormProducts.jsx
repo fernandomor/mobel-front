@@ -210,7 +210,7 @@ className=" mt-5 w-full text-center py-3 border border-transparent text-base fon
   ):
   (
     <button 
-onClick={()=>submitForm()}
+onClick={submitForm}
 type="submit" 
 className=" mt-5 w-full text-center py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600">
   Añadir producto
